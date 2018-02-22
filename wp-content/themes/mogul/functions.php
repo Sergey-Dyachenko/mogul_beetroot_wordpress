@@ -116,18 +116,18 @@ add_action( 'widgets_init', 'mogul_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function mogul_scripts() {
-	wp_enqueue_style( 'mogul-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'mogul-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'mogul-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'mogul_scripts' );
+//function mogul_scripts() {
+//	wp_enqueue_style( 'mogul-style', get_stylesheet_uri() );
+//
+//	wp_enqueue_script( 'mogul-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+//
+//	wp_enqueue_script( 'mogul-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+//
+//	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+//		wp_enqueue_script( 'comment-reply' );
+//	}
+//}
+//add_action( 'wp_enqueue_scripts', 'mogul_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -156,3 +156,35 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+class Mogul_Enqueue_Class
+{
+    private static $instance;
+
+    public static function get_instance()
+    {
+        if (null === self::$instance) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    private function __construct()
+    {
+        add_action('wp_enqueue_scripts',  'enqueue_script');
+
+//        add_filter('the_content', array($this, 'the_content'));
+    }
+
+    public function enqueue_script()
+    {
+        wp_register_script('mogul_bootstrap',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js');
+        wp_enqueue_script('mogul_bootstrap');
+
+    }
+
+}
+
+    $mogul_enqueue_scripts = Mogul_Enqueue_Class::get_instance();
+    var_dump($mogul_enqueue_scripts);
+    wp_die();
