@@ -15,13 +15,30 @@ class Mogul_Enqueue_Class
 
     private function __construct()
     {
-
+        $this->mogul_load_dependencies();
+        $this->mogul_enqueue_menu();
         add_theme_support('custom-logo');
         add_theme_support( 'title-tag' );
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
         add_action('after_theme_setup', 'mogul_custom_header_setup');
 
     }
+
+    //load dependecies
+    private function mogul_load_dependencies()
+    {
+        require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+    }
+
+    //load the menu
+   private function mogul_enqueue_menu(){
+        register_nav_menus(
+            array(
+                'primary' => __('Primary Menu', 'mogul'),
+            )
+        );
+   }
+
     //enqueue scripts and styles
     public function enqueue_scripts_styles()
     {

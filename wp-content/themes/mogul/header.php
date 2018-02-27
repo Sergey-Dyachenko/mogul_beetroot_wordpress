@@ -24,31 +24,44 @@
                 <button class="navbar-toggler collapsed " type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
                 </button>
+                <?php
+                wp_nav_menu(array(
+                        'theme_location' => 'primary',
+                        'depth'         =>  2,
+                        'container'     =>  'div',
+                        'container_class'=> 'navbar-collapse collapse',
+                        'container_id'   => 'navbarsExampleDefault',
+                        'menu_class'     => 'navbar-nav mr-auto nav-block',
+                        'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
+                        'walker'        =>  new WP_Bootstrap_Navwalker()
+                        ));
 
-                <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
-                    <ul class="navbar-nav mr-auto nav-block">
-                        <li class="nav-item active nav-block__nav-item">
-                            <a class="nav-link disabled nav-block__nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item nav nav-block__nav-item">
-                            <a class="nav-link disabled nav-block__nav-link" href="#">Reviews</a>
-                        </li>
-                        <li class="nav-item nav-block__nav-item">
-                            <a class="nav-link disabled nav-block__nav-link" href="#">Services</a>
-                        </li>
-                        <li class="nav-item nav-block__nav-item">
-                            <a class="nav-link disabled nav-block__nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item nav-block__nav-item">
-                            <a class="nav-link disabled nav-block__nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item nav-block__nav-item">
-                            <a class="nav-link disabled nav-block__nav-link" href="#">Contact</a>
-                        </li>
+                ?>
 
-                    </ul>
-
-                </div>
+<!--                <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">-->
+<!--                    <ul class="navbar-nav mr-auto nav-block">-->
+<!--                        <li class="nav-item active nav-block__nav-item">-->
+<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item nav nav-block__nav-item">-->
+<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Reviews</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item nav-block__nav-item">-->
+<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Services</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item nav-block__nav-item">-->
+<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Portfolio</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item nav-block__nav-item">-->
+<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Blog</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item nav-block__nav-item">-->
+<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Contact</a>-->
+<!--                        </li>-->
+<!---->
+<!--                    </ul>-->
+<!---->
+<!--                </div>-->
             </nav>
         </div>
     </div>
