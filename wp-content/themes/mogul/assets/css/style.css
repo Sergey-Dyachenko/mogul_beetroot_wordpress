@@ -21,6 +21,9 @@ nav {
     font-size: 14px;
     text-transform: uppercase;
     padding: 28px; }
+  a.nav-link{
+    color: #868e96;
+  }
   nav .logo-block {
     margin-left: 37px;
     margin-top: 120px; }
@@ -50,7 +53,7 @@ body {
   margin-top: 0rem; }
 
 .spacer-block {
-  height: 80px; }
+  height: 40px; }
 
 .form-group {
   margin-bottom: 0rem; }
@@ -386,7 +389,8 @@ ul.widget-list-post-box {
     nav .logo-block {
       margin-top: 20px; }
     nav .logo-block__img {
-      width: 50%; }
+      width: 50%;
+    height: auto}
   .background-block {
     display: none; }
   .contact-form-block .contact-form__title {

@@ -38,38 +38,15 @@
 
                 ?>
 
-<!--                <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">-->
-<!--                    <ul class="navbar-nav mr-auto nav-block">-->
-<!--                        <li class="nav-item active nav-block__nav-item">-->
-<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item nav nav-block__nav-item">-->
-<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Reviews</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item nav-block__nav-item">-->
-<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Services</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item nav-block__nav-item">-->
-<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Portfolio</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item nav-block__nav-item">-->
-<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Blog</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item nav-block__nav-item">-->
-<!--                            <a class="nav-link disabled nav-block__nav-link" href="#">Contact</a>-->
-<!--                        </li>-->
-<!---->
-<!--                    </ul>-->
-<!---->
-<!--                </div>-->
             </nav>
         </div>
     </div>
 
-</header>
 <div class="spacer-block"></div>
 <section class="background-block">
+
 </section>
+</header>
 <!--<main class="main-block">-->
 <!--    <article class="container main-article">-->
 <!--        <h1>-->

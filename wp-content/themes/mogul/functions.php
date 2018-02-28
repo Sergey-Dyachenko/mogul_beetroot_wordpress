@@ -18,6 +18,7 @@ class Mogul_Enqueue_Class
         $this->mogul_load_dependencies();
         $this->mogul_enqueue_menu();
         add_theme_support('custom-logo');
+        add_filter('get_custom_logo', array($this ,'mogul_change_logo_class'));
         add_theme_support( 'title-tag' );
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
         add_action('after_theme_setup', 'mogul_custom_header_setup');
@@ -28,6 +29,13 @@ class Mogul_Enqueue_Class
     private function mogul_load_dependencies()
     {
         require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+    }
+
+    //add custom class to custom logo
+
+    function mogul_change_logo_class($html){
+        $html = str_replace('custom-logo', 'logo-block__img', $html);
+        return $html;
     }
 
     //load the menu
