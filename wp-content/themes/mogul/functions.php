@@ -23,6 +23,7 @@ class Mogul_Enqueue_Class
         add_theme_support( 'title-tag' );
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
         add_action('after_theme_setup', 'mogul_custom_header_setup');
+        add_action('widgets_init', array($this , 'socials_footer_area_init'));
 
     }
 
@@ -34,14 +35,16 @@ class Mogul_Enqueue_Class
 
     //add custom class to custom logo
 
-    function mogul_change_logo_class($html){
+    function mogul_change_logo_class($html)
+    {
         $html = str_replace('custom-logo', 'logo-block__img', $html); // change class
         $html = preg_replace('/(width|height)="\d*"/', '', $html);
         return $html;
     }
 
     //load the menu
-   private function mogul_enqueue_menu(){
+   private function mogul_enqueue_menu()
+   {
         register_nav_menus(
             array(
                 'primary' => __('Primary Menu', 'mogul'),
@@ -66,7 +69,7 @@ class Mogul_Enqueue_Class
     //add custom header support
 
   public function mogul_custom_header_setup()
-    {
+  {
         $args = array(
             'default-image' =>  get_template_directory_uri() . 'assets/img/header-main-bg',
             'default-text-color' => '000',
@@ -78,6 +81,22 @@ class Mogul_Enqueue_Class
             add_theme_support('custom-header', $args);
 
     }
+
+    //add social icons footer area
+
+    public function socials_footer_area_init()
+    {
+        register_sidebar(array(
+            'name'          =>  __('Footer Social Area', 'mogul'),
+            'class'         =>  'footer-side-block__social',
+            'before_widget'  => '<div>',
+            'after_widget'  =>  '</div>',
+            'before_title'  =>  '<h1>',
+            'after_title'   =>  '</h1>'
+
+    ));
+    }
+
 
 }
 
