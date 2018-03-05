@@ -18,6 +18,7 @@ class Mogul_Enqueue_Class
         $this->mogul_load_dependencies();
         $this->mogul_enqueue_menu();
         add_theme_support('custom-logo');
+        add_theme_support( 'custom-header' );
         add_filter('get_custom_logo', array($this ,'mogul_change_logo_class'));
         add_theme_support( 'title-tag' );
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
@@ -34,7 +35,8 @@ class Mogul_Enqueue_Class
     //add custom class to custom logo
 
     function mogul_change_logo_class($html){
-        $html = str_replace('custom-logo', 'logo-block__img', $html);
+        $html = str_replace('custom-logo', 'logo-block__img', $html); // change class
+        $html = preg_replace('/(width|height)="\d*"/', '', $html);
         return $html;
     }
 

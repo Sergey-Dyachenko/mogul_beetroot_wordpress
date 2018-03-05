@@ -43,9 +43,12 @@
     </div>
 
 <div class="spacer-block"></div>
-<section class="background-block">
-
-</section>
+<div class="container-fluid custom-header-box">
+<!--  <img src="--><?php //echo get_template_directory_uri() ?><!--/assets/img/header-main-bg.jpg" alt="" class="img-fluid custom-header-box__img">-->
+    <?php if (get_header_image()) :?>
+        <img src="<?php header_image(); ?>" alt="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-fluid custom-header-box__img">
+    <?php endif; ?>
+</div>
 </header>
 <!--<main class="main-block">-->
 <!--    <article class="container main-article">-->
