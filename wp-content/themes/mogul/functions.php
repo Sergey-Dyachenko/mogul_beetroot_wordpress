@@ -1,5 +1,7 @@
 <?php
 
+require get_template_directory(). '/inc/template-tags.php';
+
 
 class Mogul_Enqueue_Class
 {
@@ -15,6 +17,10 @@ class Mogul_Enqueue_Class
 
     private function __construct()
     {
+        //add lang translation directory
+        load_theme_textdomain('mogul', get_template_directory().'/languages');
+        add_theme_support('title-tag');
+        add_theme_support('post-thumbnails');
         $this->mogul_load_dependencies();
         $this->mogul_enqueue_menu();
         add_theme_support('custom-logo');
@@ -23,8 +29,13 @@ class Mogul_Enqueue_Class
         add_theme_support( 'title-tag' );
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
         add_action('after_theme_setup', 'mogul_custom_header_setup');
+        //load contact info widget
+        add_action('widgets_init', array($this ,'mogul_load_widget_contact_info'));
 
     }
+
+
+
 
     //load dependecies
     private function mogul_load_dependencies()
@@ -79,8 +90,64 @@ class Mogul_Enqueue_Class
 
     }
 
+    //add Contact Info footer widget
+    function mogul_load_widget_contact_info(){
+        register_widget('Mogul_Widget_Contact');
+    }
+
+
+
 }
+class Mogul_Widget_Contact extends WP_Widget
+{
+    //init widget
+    function __construct()
+    {
+        parent::__construct(
+            'widget__contact_info',
+            __('Mogul Make Up Artistry', 'mogul'),
+            array('description' => __('Widget for echo contact information', 'mogul'),)
+        );
+    }
 
-    $mogul_enqueue_scripts = Mogul_Enqueue_Class::get_instance();
 
+//create widget frontend
 
+    public function widget($args, $instance)
+    {
+        $title = appply_filters('widget_title', $instance['title']);
+        echo $args['before_widget'];
+        if (!empty($title))
+            echo $args['before_title'] . $title . $args['after_titile'];
+        echo __('Hello World', 'mogul');
+        echo $args['after_widget'];
+    }
+//crate widget backend
+
+    public function form($instance){
+        if (isset($instance['title'])){
+            $title = $instance['title'];
+        }
+        else{
+            $title = __('New title','mogul' );
+        }
+
+        // Widget admin form
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+        </p>
+        <?php
+    }
+
+//updating widget
+    public function update($new_instance, $old_instance)
+    {
+        $instance = array();
+        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+        return $instance;
+
+    }
+}
+$mogul_enqueue_scripts = Mogul_Enqueue_Class::get_instance();
