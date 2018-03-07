@@ -31,6 +31,8 @@ class Mogul_Enqueue_Class
         add_action('after_theme_setup', 'mogul_custom_header_setup');
         //load contact info widget
         add_action('widgets_init', array($this ,'mogul_load_widget_contact_info'));
+        add_action('widgets_init', array($this , 'socials_footer_area_init'));
+
 
     }
 
@@ -45,14 +47,16 @@ class Mogul_Enqueue_Class
 
     //add custom class to custom logo
 
-    function mogul_change_logo_class($html){
+    function mogul_change_logo_class($html)
+    {
         $html = str_replace('custom-logo', 'logo-block__img', $html); // change class
         $html = preg_replace('/(width|height)="\d*"/', '', $html);
         return $html;
     }
 
     //load the menu
-   private function mogul_enqueue_menu(){
+   private function mogul_enqueue_menu()
+   {
         register_nav_menus(
             array(
                 'primary' => __('Primary Menu', 'mogul'),
@@ -77,7 +81,7 @@ class Mogul_Enqueue_Class
     //add custom header support
 
   public function mogul_custom_header_setup()
-    {
+  {
         $args = array(
             'default-image' =>  get_template_directory_uri() . 'assets/img/header-main-bg',
             'default-text-color' => '000',
@@ -90,11 +94,28 @@ class Mogul_Enqueue_Class
 
     }
 
+<<<<<<< HEAD
     //add Contact Info footer widget
     function mogul_load_widget_contact_info(){
         register_widget('Mogul_Widget_Contact');
     }
 
+=======
+    //add social icons footer area
+
+    public function socials_footer_area_init()
+    {
+        register_sidebar(array(
+            'name'          =>  __('Footer Social Area', 'mogul'),
+            'class'         =>  'footer-side-block__social',
+            'before_widget'  => '<div>',
+            'after_widget'  =>  '</div>',
+            'before_title'  =>  '<h1>',
+            'after_title'   =>  '</h1>'
+
+    ));
+    }
+>>>>>>> 740802995ff8ce36f61bc58ee8cbbcde8f0b3d3c
 
 
 }
