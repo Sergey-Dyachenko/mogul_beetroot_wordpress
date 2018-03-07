@@ -94,13 +94,13 @@ class Mogul_Enqueue_Class
 
     }
 
-<<<<<<< HEAD
+
     //add Contact Info footer widget
     function mogul_load_widget_contact_info(){
         register_widget('Mogul_Widget_Contact');
     }
 
-=======
+
     //add social icons footer area
 
     public function socials_footer_area_init()
@@ -115,7 +115,7 @@ class Mogul_Enqueue_Class
 
     ));
     }
->>>>>>> 740802995ff8ce36f61bc58ee8cbbcde8f0b3d3c
+
 
 
 }
