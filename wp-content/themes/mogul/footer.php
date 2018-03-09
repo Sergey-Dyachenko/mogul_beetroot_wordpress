@@ -25,9 +25,13 @@ Stay up to date with blah blah for
             </div>
             <div class="col-md-5 footer-center-block">
                 <div class="footer-center-block__address">
-                    <h3>
-Mogul Makeup Artistry
-</h3>
+
+                    <?php
+                        var_dump(is_active_sidebar('footer_info_widget_area'));
+                    if (is_active_sidebar('footer_info_widget_area')):  ?>
+
+                        <?php dynamic_sidebar('footer_info_widget_area') ?>
+                    <?php endif; ?>
                     <div>
                         <p>
 Allison Humeniuk

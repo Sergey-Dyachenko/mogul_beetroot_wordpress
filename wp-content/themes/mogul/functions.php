@@ -107,6 +107,7 @@ class Mogul_Enqueue_Class
     {
         register_sidebar(array(
             'name'          =>  __('Footer Social Area', 'mogul'),
+            'id'            =>  'footer_info_widget_area',
             'class'         =>  'footer-side-block__social',
             'before_widget'  => '<div>',
             'after_widget'  =>  '</div>',
