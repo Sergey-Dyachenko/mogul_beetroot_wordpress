@@ -143,9 +143,9 @@ class Contact_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
         echo $args['before_widget'];
         if ( ! empty( $instance['title'] ) ) {
-            echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+            echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ).$instance['name'] . $args['after_title'];
         }
-        echo esc_html__( 'Hello, World!', 'text_domain' );
+
         echo $args['after_widget'];
     }
 
@@ -158,10 +158,15 @@ class Contact_Widget extends WP_Widget {
      */
     public function form( $instance ) {
         $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
+        $name = ! empty( $instance['name'] ) ? $instance['name'] : esc_html__( 'New title', 'text_domain' );
         ?>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+        </p>
+        <p>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php esc_attr_e( 'Name:', 'text_domain' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>">
         </p>
         <?php
     }
@@ -179,7 +184,7 @@ class Contact_Widget extends WP_Widget {
     public function update( $new_instance, $old_instance ) {
         $instance = array();
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-
+        $instance['name'] = ( ! empty( $new_instance['name'] ) ) ? strip_tags( $new_instance['name'] ) : '';
         return $instance;
     }
 
@@ -195,4 +200,10 @@ add_filter('widget_title', 'mogul_change_widget_title_headname');
 
 function    mogul_change_widget_title_headname($title){
     return '<h3>' . $title . '</h3>';
+}
+
+add_filter('widget_title', 'mogul_change_widget_title_headname');
+
+function    mogul_change_widget_name_markup($name){
+    return '<div><p>' . $name . '</p>';
 }
