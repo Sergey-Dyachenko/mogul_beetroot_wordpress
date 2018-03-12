@@ -30,7 +30,6 @@ class Mogul_Enqueue_Class
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
         add_action('after_theme_setup', 'mogul_custom_header_setup');
         //load contact info widget
-        add_action('widgets_init', array($this ,'mogul_load_widget_contact_info'));
         add_action('widgets_init', array($this , 'socials_footer_area_init'));
 
 
@@ -95,12 +94,6 @@ class Mogul_Enqueue_Class
     }
 
 
-    //add Contact Info footer widget
-    function mogul_load_widget_contact_info(){
-        register_widget('Mogul_Widget_Contact');
-    }
-
-
     //add social icons footer area
 
     public function socials_footer_area_init()
@@ -120,56 +113,86 @@ class Mogul_Enqueue_Class
 
 
 }
-class Mogul_Widget_Contact extends WP_Widget
-{
-    //init widget
-    function __construct()
-    {
+
+$mogul_enqueue_scripts = Mogul_Enqueue_Class::get_instance();
+
+/**
+ * Adds Foo_Widget widget.
+ */
+class Contact_Widget extends WP_Widget {
+
+    /**
+     * Register widget with WordPress.
+     */
+    function __construct() {
         parent::__construct(
-            'widget__contact_info',
-            __('Mogul Make Up Artistry', 'mogul'),
-            array('description' => __('Widget for echo contact information', 'mogul'),)
+            'contact_widget', // Base ID
+            esc_html__( 'Widget Title', 'text_domain' ), // Name
+            array( 'description' => esc_html__( 'A Contact Widget', 'text_domain' ), ) // Args
         );
     }
 
-
-//create widget frontend
-
-    public function widget($args, $instance)
-    {
-        $title = appply_filters('widget_title', $instance['title']);
+    /**
+     * Front-end display of widget.
+     *
+     * @see WP_Widget::widget()
+     *
+     * @param array $args     Widget arguments.
+     * @param array $instance Saved values from database.
+     */
+    public function widget( $args, $instance ) {
         echo $args['before_widget'];
-        if (!empty($title))
-            echo $args['before_title'] . $title . $args['after_titile'];
-        echo __('Hello World', 'mogul');
+        if ( ! empty( $instance['title'] ) ) {
+            echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+        }
+        echo esc_html__( 'Hello, World!', 'text_domain' );
         echo $args['after_widget'];
     }
-//crate widget backend
 
-    public function form($instance){
-        if (isset($instance['title'])){
-            $title = $instance['title'];
-        }
-        else{
-            $title = __('New title','mogul' );
-        }
-
-        // Widget admin form
+    /**
+     * Back-end widget form.
+     *
+     * @see WP_Widget::form()
+     *
+     * @param array $instance Previously saved values from database.
+     */
+    public function form( $instance ) {
+        $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+            <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
         </p>
         <?php
     }
 
-//updating widget
-    public function update($new_instance, $old_instance)
-    {
+    /**
+     * Sanitize widget form values as they are saved.
+     *
+     * @see WP_Widget::update()
+     *
+     * @param array $new_instance Values just sent to be saved.
+     * @param array $old_instance Previously saved values from database.
+     *
+     * @return array Updated safe values to be saved.
+     */
+    public function update( $new_instance, $old_instance ) {
         $instance = array();
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-        return $instance;
 
+        return $instance;
     }
+
+} // class Contact_Widget
+
+// register Contact_Widget widget
+function register_contact_widget() {
+    register_widget( 'Contact_Widget' );
 }
-$mogul_enqueue_scripts = Mogul_Enqueue_Class::get_instance();
+add_action( 'widgets_init', 'register_contact_widget' );
+
+add_filter('widget_title', 'mogul_change_widget_title_headname');
+
+function    mogul_change_widget_title_headname($title){
+    return '<h3>' . $title . '</h3>';
+}

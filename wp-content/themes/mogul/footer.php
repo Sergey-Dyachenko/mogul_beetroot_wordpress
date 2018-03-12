@@ -29,16 +29,15 @@ Stay up to date with blah blah for
                     <?php
                         var_dump(is_active_sidebar('footer_info_widget_area'));
                     if (is_active_sidebar('footer_info_widget_area')):  ?>
-
                         <?php dynamic_sidebar('footer_info_widget_area') ?>
                     <?php endif; ?>
                     <div>
-                        <p>
-Allison Humeniuk
-</p>
-                        <p>
-On-Location Makeup Artist
-</p>
+                    <p>
+                        Allison Humeniuk
+                    </p>
+                    <p>
+                        On-Location Makeup Artist
+                    </p>
                     </div>
                     <ul>
                         <li><i class="fa fa-map-marker" aria-hidden="true"></i>  Portland, Maine</li>
