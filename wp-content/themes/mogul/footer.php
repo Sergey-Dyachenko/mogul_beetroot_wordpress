@@ -27,7 +27,6 @@ Stay up to date with blah blah for
                 <div class="footer-center-block__address">
 
                     <?php
-                        var_dump(is_active_sidebar('footer_info_widget_area'));
                     if (is_active_sidebar('footer_info_widget_area')):  ?>
                         <?php dynamic_sidebar('footer_info_widget_area') ?>
                     <?php endif; ?>
@@ -49,7 +48,7 @@ Stay up to date with blah blah for
             <div class="col-md-4 footer-side-block">
                 <div class="footer-side-block__social">
                     <h3>
-Stay connected with us!
+                        Stay connected with us!
                     </h3>
                     <p>Stay up to date with blah blah for</p>
                     <p>   blah blah and yeah blah</p>
