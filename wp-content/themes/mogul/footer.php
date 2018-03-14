@@ -30,14 +30,6 @@ Stay up to date with blah blah for
                     if (is_active_sidebar('footer_info_widget_area')):  ?>
                         <?php dynamic_sidebar('footer_info_widget_area') ?>
                     <?php endif; ?>
-                    <div>
-                    <p>
-                        Allison Humeniuk
-                    </p>
-                    <p>
-                        On-Location Makeup Artist
-                    </p>
-                    </div>
                     <ul>
                         <li><i class="fa fa-map-marker" aria-hidden="true"></i>  Portland, Maine</li>
                         <li><i class="fa fa-envelope-o" aria-hidden="true"></i>allison@mogulmakeup.com</li>

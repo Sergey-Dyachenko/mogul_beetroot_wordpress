@@ -50,15 +50,18 @@ class Contact_Widget extends WP_Widget {
         ?>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
-            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
         </p>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php esc_attr_e( 'Name:', 'text_domain' ); ?></label>
-            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>">
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>">
         </p>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'location_title' ) ); ?>"><?php esc_attr_e( 'Location Title:', 'text_domain' ); ?></label>
-            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'location_title' ) ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>">
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_title' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'location_title' ) ); ?>" type="text" value="<?php echo esc_attr( $location_title); ?>">
         </p>
         <?php
     }
@@ -103,6 +106,6 @@ function    mogul_change_widget_name_markup($name){
 
 add_filter('widget_title', 'mogul_change_location_title_markup');
 
-function    mogul_change_widget_location_title_markup($location_title){
+function    mogul_change_location_title_markup($location_title){
     return '<p>' . $location_title . '</p></div>';
 }
