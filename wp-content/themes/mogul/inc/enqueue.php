@@ -107,8 +107,8 @@ class Mogul_Enqueue_Class
             'class'         =>  'footer-side-block__social',
             'before_widget'  => '<div>',
             'after_widget'  =>  '</div>',
-            'before_title'  =>  '<h1>',
-            'after_title'   =>  '</h1>'
+            'before_title'  =>  '<h3>',
+            'after_title'   =>  '</h3>'
 
         ));
     }

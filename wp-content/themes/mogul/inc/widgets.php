@@ -28,9 +28,18 @@ class Contact_Widget extends WP_Widget {
      * @param array $instance Saved values from database.
      */
     public function widget( $args, $instance ) {
+
+        $title = apply_filters( 'widget_title', $instance['title'] );
+
+
+        $name = apply_filters( 'widget_title', $instance['name'] );
+
+        $location_title = apply_filters( 'widget_title', $instance['location_title'] );
+
+
         echo $args['before_widget'];
         if ( ! empty( $instance['title'] ) ) {
-            echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ).$instance['name'] . $args['after_title'];
+            echo $title . $name .$location_title;
         }
 
         echo $args['after_widget'];
@@ -95,7 +104,7 @@ add_action( 'widgets_init', 'register_contact_widget' );
 add_filter('widget_title', 'mogul_change_widget_title_headname');
 
 function    mogul_change_widget_title_headname($title){
-    return '<h3>' . $title . '</h3>';
+    return  $title ;
 }
 
 add_filter('widget_title', 'mogul_change_widget_name_markup');
