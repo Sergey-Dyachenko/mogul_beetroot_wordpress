@@ -36,10 +36,19 @@ class Contact_Widget extends WP_Widget {
 
         $location_title = apply_filters( 'widget_title', $instance['location_title'] );
 
+        $location_city = apply_filters('widget_title', $instance['location_city']);
+
+        $location_email = apply_filters('widget_title', $instance['location_email']);
+
+        $location_phone = apply_filters('widget_title', $instance['location_phone']);
 
         echo $args['before_widget'];
         if ( ! empty( $instance['title'] ) ) {
-            echo $title . $name .$location_title;
+            echo '<h3>'. $title. '</h3>' .
+                '<div> <p>' . $name .'</p>' . '<p>' . $location_title . '</p></div>' .
+                '<ul><li>' . $location_city. '</li><li>' .$location_email .'</li><li>' .$location_phone  . '</li></ul>';
+
+
         }
 
         echo $args['after_widget'];
@@ -54,8 +63,11 @@ class Contact_Widget extends WP_Widget {
      */
     public function form( $instance ) {
         $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
-        $name = ! empty( $instance['name'] ) ? $instance['name'] : esc_html__( 'New title', 'text_domain' );
-        $location_title = ! empty( $instance['location_title'] ) ? $instance['location_title'] : esc_html__( 'New title', 'text_domain' );
+        $name = ! empty( $instance['name'] ) ? $instance['name'] : esc_html__( 'name', 'text_domain' );
+        $location_title = ! empty( $instance['location_title'] ) ? $instance['location_title'] : esc_html__( 'Location title', 'text_domain' );
+        $location_city = ! empty( $instance['location_city'] ) ? $instance['location_city'] : esc_html__( 'Location city', 'text_domain' );
+        $location_email = !empty( $instance['location_email']) ? $instance['location_email'] : esc_html__('Location email', 'text_domain');
+        $location_phone = !empty( $instance['location_phone']) ? $instance['location_phone'] : esc_html__('Location phone', 'text_domain');
         ?>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
@@ -71,6 +83,21 @@ class Contact_Widget extends WP_Widget {
             <label for="<?php echo esc_attr( $this->get_field_id( 'location_title' ) ); ?>"><?php esc_attr_e( 'Location Title:', 'text_domain' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_title' ) ); ?>"
                    name="<?php echo esc_attr( $this->get_field_name( 'location_title' ) ); ?>" type="text" value="<?php echo esc_attr( $location_title); ?>">
+        </p>
+        <p>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'location_city' ) ); ?>"><?php esc_attr_e( 'Location city:', 'text_domain' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_city' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'location_city' ) ); ?>" type="text" value="<?php echo esc_attr( $location_city); ?>">
+        </p>
+        <p>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'location_email' ) ); ?>"><?php esc_attr_e( 'Location email:', 'text_domain' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_email' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'location_email' ) ); ?>" type="text" value="<?php echo esc_attr( $location_email); ?>">
+        </p>
+        <p>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'location_phone' ) ); ?>"><?php esc_attr_e( 'Location Title:', 'text_domain' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_phone' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'location_phone' ) ); ?>" type="text" value="<?php echo esc_attr( $location_title); ?>">
         </p>
         <?php
     }
@@ -90,6 +117,9 @@ class Contact_Widget extends WP_Widget {
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
         $instance['name'] = ( ! empty( $new_instance['name'] ) ) ? strip_tags( $new_instance['name'] ) : '';
         $instance['location_title'] = ( ! empty( $new_instance['location_title'] ) ) ? strip_tags( $new_instance['location_title'] ) : '';
+        $instance['location_city'] = ( ! empty( $new_instance['location_city'] ) ) ? strip_tags( $new_instance['location_city'] ) : '';
+        $instance['location_email'] = ( ! empty( $new_instance['location_email'] ) ) ? strip_tags( $new_instance['location_email'] ) : '';
+        $instance['location_phone'] = ( ! empty( $new_instance['location_phone'] ) ) ? strip_tags( $new_instance['location_phone'] ) : '';
         return $instance;
     }
 
@@ -101,20 +131,20 @@ function register_contact_widget() {
 }
 add_action( 'widgets_init', 'register_contact_widget' );
 
-add_filter('widget_title', 'mogul_change_widget_title_headname');
-
-function    mogul_change_widget_title_headname($title){
-    return  $title ;
-}
-
-add_filter('widget_title', 'mogul_change_widget_name_markup');
-
-function    mogul_change_widget_name_markup($name){
-    return '<div><p>' . $name . '</p>';
-}
-
-add_filter('widget_title', 'mogul_change_location_title_markup');
-
-function    mogul_change_location_title_markup($location_title){
-    return '<p>' . $location_title . '</p></div>';
-}
+//add_filter('widget_title', 'mogul_change_widget_title_headname');
+//
+//function    mogul_change_widget_title_headname($title){
+//    return '<h3>' . $title .'</h3>' ;
+//}
+//
+//add_filter('widget_title', 'mogul_change_widget_name_markup');
+//
+//function    mogul_change_widget_name_markup($name){
+//    return '<div><p>' . $name . '</p>';
+//}
+//
+//add_filter('widget_title', 'mogul_change_location_title_markup');
+//
+//function    mogul_change_location_title_markup($location_title){
+//    return '<p>' . $location_title . '</p></div>';
+//}

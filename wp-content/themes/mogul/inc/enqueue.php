@@ -105,10 +105,10 @@ class Mogul_Enqueue_Class
             'name'          =>  __('Footer Social Area', 'mogul'),
             'id'            =>  'footer_info_widget_area',
             'class'         =>  'footer-side-block__social',
-            'before_widget'  => '<div>',
-            'after_widget'  =>  '</div>',
-            'before_title'  =>  '<h3>',
-            'after_title'   =>  '</h3>'
+//            'before_widget'  => '<div>',
+//            'after_widget'  =>  '</div>',
+//            'before_title'  =>  '<h3>',
+//            'after_title'   =>  '</h3>'
 
         ));
     }
