@@ -33,7 +33,8 @@ class Mogul_Enqueue_Class
         add_action('wp_enqueue_scripts',  array($this, 'enqueue_scripts_styles'));
         add_action('after_theme_setup', 'mogul_custom_header_setup');
         //load contact info widget
-        add_action('widgets_init', array($this , 'socials_footer_area_init'));
+        add_action('widgets_init', array($this , 'footer_contact_area_init'));
+        add_action('widgets_init', array($this , 'footer_social_area_init'));
 
 
     }
@@ -97,13 +98,27 @@ class Mogul_Enqueue_Class
     }
 
 
-    //add social icons footer area
+    //add footers widget area
 
-    public function socials_footer_area_init()
+    public function footer_contact_area_init()
+    {
+        register_sidebar(array(
+            'name'          =>  __('Footer Contact Area', 'mogul'),
+            'id'            =>  'footer_info_widget_area',
+            'class'         =>  'footer-side-block__info',
+//            'before_widget'  => '<div>',
+//            'after_widget'  =>  '</div>',
+//            'before_title'  =>  '<h3>',
+//            'after_title'   =>  '</h3>'
+
+        ));
+    }
+
+    public function footer_social_area_init()
     {
         register_sidebar(array(
             'name'          =>  __('Footer Social Area', 'mogul'),
-            'id'            =>  'footer_info_widget_area',
+            'id'            =>  'footer_social_widget_area',
             'class'         =>  'footer-side-block__social',
 //            'before_widget'  => '<div>',
 //            'after_widget'  =>  '</div>',

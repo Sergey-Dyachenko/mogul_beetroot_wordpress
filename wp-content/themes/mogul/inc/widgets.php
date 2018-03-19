@@ -46,7 +46,9 @@ class Contact_Widget extends WP_Widget {
         if ( ! empty( $instance['title'] ) ) {
             echo '<h3>'. $title. '</h3>' .
                 '<div> <p>' . $name .'</p>' . '<p>' . $location_title . '</p></div>' .
-                '<ul><li>' . $location_city. '</li><li>' .$location_email .'</li><li>' .$location_phone  . '</li></ul>';
+                '<ul><li><i class="fa fa-map-marker" aria-hidden="true"></i>' . $location_city. '</li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i>' .$location_email .'</li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i>' .$location_phone . '</li></ul>';
 
 
         }
@@ -64,8 +66,8 @@ class Contact_Widget extends WP_Widget {
     public function form( $instance ) {
         $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
         $name = ! empty( $instance['name'] ) ? $instance['name'] : esc_html__( 'name', 'text_domain' );
-        $location_title = ! empty( $instance['location_title'] ) ? $instance['location_title'] : esc_html__( 'Location title', 'text_domain' );
-        $location_city = ! empty( $instance['location_city'] ) ? $instance['location_city'] : esc_html__( 'Location city', 'text_domain' );
+        $location_title = !empty( $instance['location_title'] ) ? $instance['location_title'] : esc_html__( 'Location title', 'text_domain' );
+        $location_city = !empty( $instance['location_city'] ) ? $instance['location_city'] : esc_html__( 'Location city', 'text_domain' );
         $location_email = !empty( $instance['location_email']) ? $instance['location_email'] : esc_html__('Location email', 'text_domain');
         $location_phone = !empty( $instance['location_phone']) ? $instance['location_phone'] : esc_html__('Location phone', 'text_domain');
         ?>
@@ -95,9 +97,9 @@ class Contact_Widget extends WP_Widget {
                    name="<?php echo esc_attr( $this->get_field_name( 'location_email' ) ); ?>" type="text" value="<?php echo esc_attr( $location_email); ?>">
         </p>
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'location_phone' ) ); ?>"><?php esc_attr_e( 'Location Title:', 'text_domain' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'location_phone' ) ); ?>"><?php esc_attr_e( 'Location phone:', 'text_domain' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'location_phone' ) ); ?>"
-                   name="<?php echo esc_attr( $this->get_field_name( 'location_phone' ) ); ?>" type="text" value="<?php echo esc_attr( $location_title); ?>">
+                   name="<?php echo esc_attr( $this->get_field_name( 'location_phone' ) ); ?>" type="text" value="<?php echo esc_attr( $location_phone); ?>">
         </p>
         <?php
     }

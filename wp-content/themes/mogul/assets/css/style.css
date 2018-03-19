@@ -425,3 +425,9 @@ ul.widget-list-post-box .widget-list-post-box__item {
         display: none; }
     .review-block__img {
         padding: 0px; } }
+
+/*Custom style*/
+
+li#custom_html-2{
+    list-style-type: none;
+}

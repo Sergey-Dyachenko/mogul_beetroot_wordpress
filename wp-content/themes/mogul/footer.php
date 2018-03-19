@@ -10,18 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3 footer-side-block" >
-                <div class="footer-side-block__signup">
-                    <h3>
-Sign up for e-mail updates
-</h3>
-                    <p>
-Stay up to date with blah blah for
-    blah blah and yeah blah
-    </p>
-                    <div>
-                        <input style="width:100%" type="text"/>
-                    </div>
-                </div>
+                <?php echo do_shortcode('[contact-form-7 id="36" title="Untitled"]');?>
             </div>
             <div class="col-md-5 footer-center-block">
                 <div class="footer-center-block__address">
@@ -30,38 +19,38 @@ Stay up to date with blah blah for
                     if (is_active_sidebar('footer_info_widget_area')):  ?>
                         <?php dynamic_sidebar('footer_info_widget_area') ?>
                     <?php endif; ?>
-                    <ul>
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>  Portland, Maine</li>
-                        <li><i class="fa fa-envelope-o" aria-hidden="true"></i>allison@mogulmakeup.com</li>
-                        <li><i class="fa fa-phone" aria-hidden="true"></i>(207)370.4427</li>
-                    </ul>
+
                 </div>
             </div>
             <div class="col-md-4 footer-side-block">
                 <div class="footer-side-block__social">
-                    <h3>
-                        Stay connected with us!
-                    </h3>
-                    <p>Stay up to date with blah blah for</p>
-                    <p>   blah blah and yeah blah</p>
-                    <div class='icon-wrapper'>
-                        <i class="fa fa-lg fa-facebook"></i>
-                    </div>
-                    <div class='icon-wrapper'>
-                        <i class="fa fa-lg fa-twitter"></i>
-                    </div>
-                    <div class='icon-wrapper'>
-                        <i class="fa fa-lg fa-instagram"></i>
-                    </div>
-                    <div class='icon-wrapper'>
-                        <i class="fa fa-lg fa-pinterest-p"></i>
-                    </div>
-                    <div class='icon-wrapper'>
-                        <i class="fa fa-lg fa-linkedin"></i>
-                    </div>
-                    <div class='icon-wrapper'>
-                        <i class="fa fa-lg fa-envelope"></i>
-                    </div>
+                    <?php
+                    if (is_active_sidebar('footer_social_widget_area')):  ?>
+                        <?php dynamic_sidebar('footer_social_widget_area') ?>
+                    <?php endif; ?>
+<!--                    <h3>-->
+<!--                        Stay connected with us!-->
+<!--                    </h3>-->
+<!--                    <p>Stay up to date with blah blah for</p>-->
+<!--                    <p>   blah blah and yeah blah</p>-->
+<!--                    <div class='icon-wrapper'>-->
+<!--                        <i class="fa fa-lg fa-facebook"></i>-->
+<!--                    </div>-->
+<!--                    <div class='icon-wrapper'>-->
+<!--                        <i class="fa fa-lg fa-twitter"></i>-->
+<!--                    </div>-->
+<!--                    <div class='icon-wrapper'>-->
+<!--                        <i class="fa fa-lg fa-instagram"></i>-->
+<!--                    </div>-->
+<!--                    <div class='icon-wrapper'>-->
+<!--                        <i class="fa fa-lg fa-pinterest-p"></i>-->
+<!--                    </div>-->
+<!--                    <div class='icon-wrapper'>-->
+<!--                        <i class="fa fa-lg fa-linkedin"></i>-->
+<!--                    </div>-->
+<!--                    <div class='icon-wrapper'>-->
+<!--                        <i class="fa fa-lg fa-envelope"></i>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
