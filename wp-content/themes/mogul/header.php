@@ -8,11 +8,11 @@
     <?php wp_head(); ?>
 </head>
 <body  <?php body_class(); ?>>
-<div id="page" class="site">
+<div id="page" class="site" <?php if (is_user_logged_in()):?>style="margin-top:32px;"<?php endif; ?> >
 <header class="header">
     <div class="container-fluid">
         <div class="row">
-            <nav class="navbar navbar-expand-md fixed-top site-branding">
+            <nav class="navbar navbar-expand-md fixed-top site-branding" <?php if (is_user_logged_in()):?>style="margin-top:32px;"<?php endif; ?> >
 <!--                <div class="logo-block"  href="#"><img src="dist/img/logo.png" class="logo-block__img" alt="Book your apointment"></div>-->
                 <div class="logo-block"  href="#">
                     <?php
